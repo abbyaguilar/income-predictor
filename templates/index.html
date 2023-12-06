@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <title>Income Predictor</title>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAnTwMY7Dw3uagcSMgOQZ9L6hxMcwRtMSs",
+            authDomain: "income-predictor-2c461.firebaseapp.com",
+            projectId: "income-predictor-2c461",
+            storageBucket: "income-predictor-2c461.appspot.com",
+            messagingSenderId: "425168797711",
+            appId: "1:425168797711:web:1a657976ff1a240304237a",
+            measurementId: "G-7PYRL7V7DY"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+    </script>
+</head>
+
+<body class="bg-gray-200 p-8">
+    <div class="max-w-md mx-auto bg-white p-6 rounded-md shadow-md">
+        <h1 class="text-2xl font-bold mb-4">Income Predictor</h1>
+
+        <form id="incomeForm">
+            <div class="mb-4">
+                <label for="age" class="block text-sm font-medium text-gray-600">Your age:</label>
+                <input type="number" id="age" name="age" class="mt-1 p-2 border rounded-md w-full" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="gender" class="block text-sm font-medium text-gray-600">Your gender:</label>
+                <select id="gender" name="gender" class="mt-1 p-2 border rounded-md w-full" required>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+
+            <div class="mb-4">
+                <label for="education" class="block text-sm font-medium text-gray-600">Education Level:</label>
+                <select id="education" name="education" class="mt-1 p-2 border rounded-md w-full" required>
+                    {% for level in education_levels %}
+                    <option value="{{ level }}">{{ level }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-4">
+                <label for="jobTitle" class="block text-sm font-medium text-gray-600">Job Title:</label>
+                <input type="text" id="jobTitle" name="jobTitle" list="jobTitles"
+                    class="mt-1 p-2 border rounded-md w-full" required>
+                <datalist id="jobTitles">
+                    {% for title in job_titles %}
+                    <option value="{{ title }}">
+                        {% endfor %}
+                </datalist>
+            </div>
+
+            <div class="mb-4">
+                <label for="experience" class="block text-sm font-medium text-gray-600">Years of experience:</label>
+                <input type="number" id="experience" name="experience" class="mt-1 p-2 border rounded-md w-full"
+                    required>
+            </div>
+
+            <button type="button" id="predictButton" class="bg-blue-500 text-white p-2 rounded-md">Predict
+                Income</button>
+        </form>
+
+        <div id="results" class="mt-6 hidden">
+            <h2 class="text-xl font-bold mb-2">Results:</h2>
+            <p id="predictedIncome" class="mb-2"></p>
+            <p id="predictionStdDev"></p>
+            <div id="featureImpact" class="mt-4"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('predictButton').addEventListener('click', function () {
+                predictIncome();
+            });
+        });
+
+        async function predictIncome() {
+            const form = document.getElementById('incomeForm');
+            const formData = new FormData(form);
+
+            const response = await fetch('http://127.0.0.1:5000/predict', {
+                method: 'POST',
+                body: formData
+            });
+
+            const data = await response.json();
+
+            document.getElementById('predictedIncome').innerText = `Predicted Income: $${data.predictedIncome.toFixed(2)}`;
+            document.getElementById('predictionStdDev').innerText = `Uncertainty (Standard Deviation): $${data.predictionStdDev.toFixed(2)}`;
+
+            const featureImpactElement = document.getElementById('featureImpact');
+            featureImpactElement.innerHTML = '<h3 class="text-lg font-bold mb-2">Feature Impact on Income:</h3>';
+
+            for (const [feature, importance] of Object.entries(data.featureImportances)) {
+                const impact = importance > 0 ? 'positively' : 'negatively';
+                featureImpactElement.innerHTML += `<p>Your ${feature} impacts your predicted income ${impact}.</p>`;
+            }
+
+            document.getElementById('results').classList.remove('hidden');
+        }
+    </script>
+</body>
+
+</html>
