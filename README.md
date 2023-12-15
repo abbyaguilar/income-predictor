@@ -28,6 +28,10 @@ Getting Started
   Install dependencies:
   
     pip install -r requirements.txt
+
+  Download Kaggle Dataset:
+
+    kaggle datasets download -d rkiattisak/salaly-prediction-for-beginer
     
   Run the Python backend:
   
@@ -37,16 +41,19 @@ The backend should be running at http://127.0.0.1:5000.
 Open index.html in your web browser or deploy it to a web server.
 
 Usage
+
 Open the web application in your browser.
 Fill in the form with your details (age, gender, education level, job title, and years of experience).
 Click the "Predict Income" button.
 View the predicted income, uncertainty (standard deviation), and the impact of each feature on the predicted income.
 
 Features
+
 Predict Income: Input your details and get an estimate of your predicted income.
 Feature Impact: Understand how each input feature impacts your predicted income, positively or negatively.
 
 Dataset Disclaimer
+
 This dataset is artificially generated for educational purposes, and any commercial use is strictly prohibited. The data used in this project was created by large language models and not collected from actual data sources.
 
 Feel free to customize and extend the application based on your needs. If you have specific questions or need help related to the dataset, feel free to ask!
