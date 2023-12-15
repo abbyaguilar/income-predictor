@@ -56,4 +56,4 @@ Dataset Disclaimer
 
 This dataset is artificially generated for educational purposes, and any commercial use is strictly prohibited. The data used in this project was created by large language models and not collected from actual data sources.
 
-Feel free to customize and extend the application based on your needs. If you have specific questions or need help related to the dataset, feel free to ask!
+Feel free to customize and extend the application based on your needs. If you have specific questions or need help related to the dataset, you are also welcome!
