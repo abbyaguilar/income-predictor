@@ -1,6 +1,6 @@
 Income Predictor
 
-This project is an Income Predictor web application that predicts the salaries of employees at a company based on various input features. The prediction model is trained on a simulated dataset containing information about each employee, including age, gender, education level, job title, years of experience, and salary ranges.
+This project is an Income Predictor web application developed as part of the CPSC 483 (Introduction to Machine Learning) class. The application predicts the salaries of employees at a company based on various input features. The prediction model is trained on a simulated dataset containing information about each employee, including age, gender, education level, job title, years of experience, and salary ranges.
 
 Dataset
 The dataset used for training the model is artificially generated for educational purposes. It includes the following columns:
