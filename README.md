@@ -6,13 +6,21 @@ Before running the project, ensure you have the following prerequisites installe
 Python (backend)
 
 Getting Started
+
   Clone the repository:
+  
     git clone https://github.com/abbyaguilar/income-predictor.git
+    
     cd income-predictor
+    
   Install dependencies:
+  
     pip install -r requirements.txt
+    
   Run the Python backend:
+  
     python app.py
+    
 The backend should be running at http://127.0.0.1:5000.
 Open index.html in your web browser or deploy it to a web server.
 
