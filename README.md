@@ -1,5 +1,17 @@
 Income Predictor
-This an Income Predictor web application built using HTML, JavaScript (with Tailwind CSS for styling), and powered by a Python backend for predicting income based on user input. 
+
+This project is an Income Predictor web application that predicts the salaries of employees at a company based on various input features. The prediction model is trained on a simulated dataset containing information about each employee, including age, gender, education level, job title, years of experience, and salary ranges.
+
+Dataset
+The dataset used for training the model is artificially generated for educational purposes. It includes the following columns:
+1. Age: Age of each employee in years (numeric).
+2. Gender: Gender of each employee (categorical: Male, Female, Other).
+3. Education Level: Educational level of each employee (categorical: High School, Bachelor's, Master's, PhD).
+4. Job Title: Job title of each employee (categorical).
+5. Years of Experience: Number of years of work experience of each employee (numeric).
+6. Salary: Annual salary of each employee in US dollars (numeric).
+The dataset also includes labeled salary ranges for analysis using the standard deviation.
+
 
 Prerequisites
 Before running the project, ensure you have the following prerequisites installed:
@@ -34,9 +46,7 @@ Features
 Predict Income: Input your details and get an estimate of your predicted income.
 Feature Impact: Understand how each input feature impacts your predicted income, positively or negatively.
 
-Notes
-This is a basic implementation, and the predictive model's accuracy depends on the quality of the underlying machine learning model and data.
-Disclaimer
-This application is for educational and demonstration purposes only. The predictions may not be accurate, and the application should not be used for making financial decisions.
+Dataset Disclaimer
+This dataset is artificially generated for educational purposes, and any commercial use is strictly prohibited. The data used in this project was created by large language models and not collected from actual data sources.
 
-Feel free to customize and extend the application based on your needs.
+Feel free to customize and extend the application based on your needs. If you have specific questions or need help related to the dataset, feel free to ask!
